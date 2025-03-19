@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisp风格提示词编辑器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/lisp.min.js"></script>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    <div class="container">
+        <header>
+            <h1>
+                <i class="fas fa-code"></i>
+                Lisp风格提示词编辑器
+            </h1>
+        </header>
+        
+        <div class="main-content">
+            <div class="editor-section">
+                <div class="metadata">
+                    <div class="section-header">
+                        <div class="header-left">
+                            <i class="fas fa-info-circle"></i>
+                            <h2>基本信息</h2>
+                        </div>
+                    </div>
+                    <div class="metadata-row">
+                        <div class="field field-inline">
+                            <label>作者:</label>
+                            <input type="text" id="author" value="椰树">
+                        </div>
+                        <div class="field field-inline">
+                            <label>版本:</label>
+                            <input type="text" id="version" value="0.3">
+                        </div>
+                        <div class="field field-inline">
+                            <label>模型:</label>
+                            <input type="text" id="model" value="DeepSeekV3">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>用途:</label>
+                        <input type="text" id="purpose" value="将词汇进行故事的组合，并加以风格描述">
+                    </div>
+                </div>
+
+                <div class="function-editor">
+                    <div class="section-header">
+                        <div class="header-left">
+                            <i class="fas fa-paint-brush"></i>
+                            <h2>艺术家函数定义</h2>
+                        </div>
+                    </div>
+                    <div class="function-content">
+                        <div class="field">
+                            <label>艺术家:</label>
+                            <input type="text" id="artist-name" value="艺术家">
+                        </div>
+                        <div class="field">
+                            <label>角色描述:</label>
+                            <textarea id="role-description">你是年轻人,中西结合,挑战传统,突破概念</textarea>
+                        </div>
+                        <div class="field field-pair">
+                            <div class="field-name">
+                                <input type="text" id="style-field" value="风格" class="field-label-input">
+                            </div>
+                            <div class="field-value">
+                                <input type="text" id="style" value="吴冠中,肖邦,常玉">
+                            </div>
+                        </div>
+                        <div class="field field-pair">
+                            <div class="field-name">
+                                <input type="text" id="expertise-field" value="擅长" class="field-label-input">
+                            </div>
+                            <div class="field-value">
+                                <input type="text" id="expertise" value="东方美学">
+                            </div>
+                        </div>
+                        <div class="field field-pair">
+                            <div class="field-name">
+                                <input type="text" id="expression-field" value="表达" class="field-label-input">
+                            </div>
+                            <div class="field-value">
+                                <input type="text" id="expression" value="温暖">
+                            </div>
+                        </div>
+                        <div class="field field-pair">
+                            <div class="field-name">
+                                <input type="text" id="story-field" value="故事" class="field-label-input">
+                            </div>
+                            <div class="field-value">
+                                <input type="text" id="story" value="情绪">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-editor">
+                    <div class="section-header">
+                        <div class="header-left">
+                            <i class="fas fa-code-branch"></i>
+                            <h2>艺术家函数实现</h2>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>函数描述:</label>
+                        <textarea id="function-description">你会用艺术家的视角来描述故事，并描述技法</textarea>
+                    </div>
+                    
+                    <div class="section-header">
+                        <div class="header-left">
+                            <i class="fas fa-link"></i>
+                            <h3>处理链配置</h3>
+                        </div>
+                    </div>
+                    <div class="processing-chain">
+                        <div class="field">
+                            <label>处理链: (从左到右处理)</label>
+                            <div class="chain-container">
+                                <input type="text" id="chain-1" value="技法" placeholder="最内层函数">
+                                <input type="text" id="chain-2" value="留白" placeholder="处理函数2">
+                                <input type="text" id="chain-3" value="水墨" placeholder="处理函数3">
+                                <input type="text" id="chain-4" value="笔触" placeholder="处理函数4">
+                                <input type="text" id="chain-5" value="一句话表达" placeholder="最外层函数">
+                                <input type="text" id="chain-var" value="创作" placeholder="变量名">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <label>示例输入:</label>
+                        <textarea id="example-input">一只猫 雪地</textarea>
+                    </div>
+                    <div class="field">
+                        <label>示例输出:</label>
+                        <textarea id="example-output">猫的脊梁是未干的墨线，蜷曲的弧线劈开雪原，玫瑰色趾尖戳破冬的茧——那团毛绒阴影正在吞吃月光，却漏出半截尾巴，搅动起满山雪沫腾起的寂静。水墨，中式审美，流动的渐变，晕染，留白，简笔，极简主义，东方美学，孤独而诗意，单一的纯色背景，模糊感+颗粒感+肌理感+朦胧感，清新淡雅，治愈配色，色彩冷暖对比强烈，强调梦幻温暖的氛围感，微光，散光，非传统构图方式，动态模糊，高级的氛围感，大写意，温暖色调，色块插画，水墨，禅意，毛笔笔触</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="section-header">
+                    <div class="header-left">
+                        <i class="fas fa-eye"></i>
+                        <h2>生成的Lisp代码预览</h2>
+                    </div>
+                    <button id="copy">
+                        <i class="fas fa-copy"></i>
+                        复制代码
+                    </button>
+                </div>
+                <pre><code class="language-lisp" id="lisp-preview"></code></pre>
+                <div class="actions">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
